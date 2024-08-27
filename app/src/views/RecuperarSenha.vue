@@ -1,5 +1,5 @@
 <template>
-	<div class="container">
+	<div class="container-sm">
 		<div class="card">
 			<h1 class="title">Recuperar Senha</h1>
 			<form @submit.prevent="enviar_recuperar">
