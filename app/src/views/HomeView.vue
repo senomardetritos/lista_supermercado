@@ -53,6 +53,7 @@
 		} else {
 			localStorage.id = res.id;
 			localStorage.token = res.token;
+			store.commit('setLogado', localStorage.token);
 			store.commit('setAlert', 'Logado com sucesso');
 		}
 	}

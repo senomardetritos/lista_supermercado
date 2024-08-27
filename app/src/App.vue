@@ -1,5 +1,6 @@
 <template>
 	<div>
+		<HeaderSite v-if="store.state.logado" />
 		<router-view />
 		<LoadingModal v-if="store.state.loading" />
 		<AlertModal v-if="store.state.alert" />
@@ -7,9 +8,15 @@
 </template>
 
 <script setup>
+	import { onMounted } from 'vue';
 	import { useStore } from 'vuex';
+	import HeaderSite from './components/HeaderSite.vue';
 	import LoadingModal from './components/LoadingModal.vue';
 	import AlertModal from './components/AlertModal.vue';
 
 	const store = useStore();
+
+	onMounted(() => {
+		store.commit('setLogado', localStorage.token);
+	});
 </script>

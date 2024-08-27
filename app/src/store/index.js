@@ -5,6 +5,7 @@ export default createStore({
 	state: {
 		loading: false,
 		alert: '',
+		logado: false,
 	},
 	getters: {},
 	mutations: {
@@ -13,6 +14,9 @@ export default createStore({
 		},
 		setAlert(state, alert) {
 			state.alert = alert;
+		},
+		setLogado(state, logado) {
+			state.logado = logado;
 		},
 	},
 	actions: {},
