@@ -1,0 +1,73 @@
+:root {
+	--text-dark: #333333;
+	--text-light: #666666;
+	--border-light: #eeeeee;
+	--bg-yellow: #ffc400;
+	--bg-primary: #0095ff;
+}
+
+* {
+	padding: 0px;
+	margin: 0px;
+	box-sizing: border-box;
+	font-family: Avenir, Helvetica, Arial, sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+	padding: 24px;
+	width: 400px;
+	max-width: 100%;
+	margin: 0 auto;
+}
+
+.card {
+	padding: 24px;
+	border: 1px solid var(--border-light);
+}
+
+.card .title {
+	font-size: 24px;
+	padding-bottom: 12px;
+	color: var(--text-dark);
+	font-weight: 900;
+}
+
+.form-group {
+	display: flex;
+	flex-direction: column;
+	padding: 4px 0px;
+}
+
+.form-group label {
+	font-size: 12px;
+	font-weight: 600;
+	color: var(--text-light);
+}
+
+.form-group input {
+	padding: 4px;
+	border: 1px solid var(--border-light);
+}
+
+.form-group .form-error {
+	font-size: 12px;
+	font-weight: 600;
+	padding: 12px;
+	color: var(--text-dark);
+	background-color: var(--bg-yellow);
+}
+
+.btn {
+	padding: 8px 4px;
+	border: 0px;
+	font-weight: 900;
+	text-transform: uppercase;
+	cursor: pointer;
+}
+
+.btn.btn-primary {
+	background-color: var(--bg-primary);
+	color: white;
+}

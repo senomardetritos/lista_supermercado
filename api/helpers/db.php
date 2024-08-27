@@ -31,7 +31,11 @@ class DB
         while ($row = $result->fetch_assoc()) {
             $data[] = $row;
         }
-        return $data;
+        if (count($data) == 1) {
+            return $data[0];
+        } else {
+            return $data;
+        }
     }
 
     public function execute($query)

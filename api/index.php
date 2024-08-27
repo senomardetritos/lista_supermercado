@@ -9,7 +9,8 @@ try {
     array_splice($params, 0, 2);
     include 'controllers/' . $controller . '.php';
     $instance = new $controller();
-    echo json_encode($instance->$action(...$params));
+    $post = json_decode(file_get_contents('php://input'));
+    echo json_encode($instance->$action($post, ...$params));
 } catch (Exception $e) {
     echo json_encode(['error' => $e->getMessage()]);
 }

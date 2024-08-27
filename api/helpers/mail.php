@@ -1,7 +1,7 @@
 <?php
 
-require('../vendor/PHPMailer/src/PHPMailer.php');
-require('../vendor/PHPMailer/src/SMTP.php');
+require('vendor/PHPMailer/src/PHPMailer.php');
+require('vendor/PHPMailer/src/SMTP.php');
 
 class Mail
 {
@@ -27,7 +27,7 @@ class Mail
         $this->mail->IsHTML(true);
         $this->mail->Username = $_ENV['MAIL_USERNAME'];
         $this->mail->Password = $_ENV['MAIL_PASSWORD'];
-        $this->mail->SetFrom("contato@senomalabs.com", 'SenomaLabs - Music to Play');
+        $this->mail->SetFrom("contato@senomalabs.com", 'SenomaLabs');
     }
 
     public function send($to, $subject, $body)

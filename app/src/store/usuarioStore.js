@@ -10,6 +10,18 @@ export default {
 			const res = await api.post('usuarios/login', data);
 			commit('setLoading', false);
 			return res.data;
+        },
+        async enviar_recuperar({ commit }, data) {
+			commit('setLoading', true);
+            const res = await api.post('usuarios/enviar-recuperar', data);
+			commit('setLoading', false);
+			return res.data;
+		},
+        async recuperar({ commit }, data) {
+			commit('setLoading', true);
+            const res = await api.post('usuarios/recuperar', data);
+			commit('setLoading', false);
+			return res.data;
 		},
 	},
 };
