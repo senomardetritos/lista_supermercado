@@ -1,21 +1,24 @@
 <template>
-	<div class="loading">
-		<h1>Carregando...</h1>
+	<div>
+		<div class="loading"></div>
+		<div class="loading-container">
+			<h1>Carregando...</h1>
+		</div>
 	</div>
 </template>
 
 <style scoped>
-	.loading::before {
-        content: '';
+	.loading {
+		content: '';
 		position: fixed;
 		top: 0px;
 		left: 0px;
 		width: 100vw;
 		height: 100vh;
 		background-color: black;
-        opacity: 0.3;
+		opacity: 0.3;
 	}
-	.loading {
+	.loading-container {
 		position: fixed;
 		top: 0px;
 		left: 0px;

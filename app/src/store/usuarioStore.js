@@ -10,16 +10,22 @@ export default {
 			const res = await api.post('usuarios/login', data);
 			commit('setLoading', false);
 			return res.data;
-        },
-        async enviar_recuperar({ commit }, data) {
+		},
+		async enviar_recuperar({ commit }, data) {
 			commit('setLoading', true);
-            const res = await api.post('usuarios/enviar-recuperar', data);
+			const res = await api.post('usuarios/enviar-recuperar', data);
 			commit('setLoading', false);
 			return res.data;
 		},
-        async recuperar({ commit }, data) {
+		async recuperar({ commit }, data) {
 			commit('setLoading', true);
-            const res = await api.post('usuarios/recuperar', data);
+			const res = await api.post('usuarios/recuperar', data);
+			commit('setLoading', false);
+			return res.data;
+		},
+		async cadastrarUsuario({ commit }, data) {
+			commit('setLoading', true);
+			const res = await api.post('usuarios/cadastrar-usuario', data);
 			commit('setLoading', false);
 			return res.data;
 		},

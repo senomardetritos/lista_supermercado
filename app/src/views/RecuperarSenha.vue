@@ -56,6 +56,7 @@
 			dataForm.codigo = '';
 			dataForm.senha = '';
 			showCodigo.value = true;
+			store.commit('setAlert', 'Email enviado com sucesso!');
 		}
 	}
 
@@ -65,6 +66,7 @@
 		if (res.error) {
 			error.value = res.error;
 		} else {
+			store.commit('setAlert', 'Senha alterada com sucesso!');
 			router.push('/');
 		}
 	}

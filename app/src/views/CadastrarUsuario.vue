@@ -1,0 +1,66 @@
+<template>
+	<div class="container">
+		<div class="card">
+			<h1 class="title">Cadastrar Usuário</h1>
+			<form @submit.prevent="cadastrar">
+				<div class="form-group">
+					<label for="email">Email</label>
+					<input type="email" v-model="dataForm.email" id="email" required />
+				</div>
+				<div class="form-group">
+					<label for="senha">Senha</label>
+					<input type="password" v-model="dataForm.senha" id="senha" required />
+				</div>
+				<div class="form-group">
+					<label for="senha2">Repetir Senha</label>
+					<input type="password" v-model="dataForm.senha2" id="senha2" required />
+				</div>
+				<div class="form-group">
+					<button type="submit" class="btn btn-primary">Cadastrar</button>
+				</div>
+				<div class="form-group" v-if="error">
+					<div class="form-error">{{ error }}</div>
+				</div>
+				<div class="form-group">
+					<RouterLink to="/">Voltar</RouterLink>
+				</div>
+			</form>
+		</div>
+	</div>
+</template>
+
+<script setup>
+	import { ref, reactive } from 'vue';
+	import { RouterLink, useRouter } from 'vue-router';
+	import { useStore } from 'vuex';
+
+	const store = useStore();
+	const router = useRouter();
+
+	const dataForm = reactive({
+		email: '',
+		senha: '',
+		senha2: '',
+	});
+
+	const error = ref('');
+
+	async function cadastrar() {
+		error.value = checkError();
+		if (error.value) return;
+		const res = await store.dispatch('cadastrarUsuario', dataForm);
+		if (res.error) {
+			error.value = res.error;
+		} else {
+			store.commit('setAlert', 'Usuário cadastrado com sucesso');
+			router.push('/');
+		}
+	}
+
+	function checkError() {
+		if (dataForm.senha !== dataForm.senha2) {
+			return 'Senha devem ser iguais';
+		}
+		return '';
+	}
+</script>

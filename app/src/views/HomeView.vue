@@ -4,6 +4,12 @@
 			<h1 class="title">Login</h1>
 			<form @submit.prevent="logar">
 				<div class="form-group">
+					<div>
+						Não tem uma conta?
+						<RouterLink to="/cadastrar">Cadastre-se</RouterLink>
+					</div>
+				</div>
+				<div class="form-group">
 					<label for="email">Email</label>
 					<input type="email" v-model="dataForm.email" id="email" required />
 				</div>
@@ -45,8 +51,9 @@
 		if (res.error) {
 			error.value = res.error;
 		} else {
-			localStorage.id = res.id
-			localStorage.token = res.token
+			localStorage.id = res.id;
+			localStorage.token = res.token;
+			store.commit('setAlert', 'Logado com sucesso');
 		}
 	}
 </script>
