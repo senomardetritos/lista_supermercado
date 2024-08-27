@@ -21,7 +21,7 @@ class usuarios
                     'email' => $data['email'],
                 ];
             } else {
-                return ['error' => 'Senha inválida'.$senha];
+                return ['error' => 'Senha inválida' . $senha];
             }
         } else {
             return ['error' => 'Usuário não encontrado'];
@@ -74,16 +74,23 @@ class usuarios
         }
     }
 
+    public function cadastrar_usuario($post)
+    {
+        $usuario = new Usuario();
+        try {
+            $email = DB::data($post->email);
+            $senha = crypt($post->senha, $_ENV['CRYPT_SALT']);
+            $usuario->cadastrar($email, $senha);
+            return ['data' => []];
+        } catch (Exception $e) {
+            return ['error' => $e->getMessage()];
+        }
+    }
+
     public function get_usuario()
     {
         $usuario_id = DB::check_login();
         $usuario = new Usuario();
         return $usuario->selectById($usuario_id);
-    }
-
-    public function insert_usuario()
-    {
-        $usuario = new Usuario();
-        return $usuario->insert(['email' => 'teste', 'senha' => 'teste']);
     }
 }

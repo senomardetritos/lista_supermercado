@@ -28,22 +28,21 @@ class Usuario
     public function updateCodigo($id, $codigo)
     {
         $db = new DB();
-        $query = "update usuarios set codigo = '" . $codigo . "' where id = " . $id;
+        $query = 'update usuarios set codigo = ' . DB::data($codigo) . ' where id = ' . DB::data($id);
         return $db->execute($query);
     }
 
     public function updateSenha($id, $senha)
     {
         $db = new DB();
-        $query = "update usuarios set senha = '" . $senha . "', codigo = '' where id = " . $id;
+        $query = 'update usuarios set senha = ' . DB::data($senha) . ', codigo = \'\' where id = ' . DB::data($id);
         return $db->execute($query);
     }
 
-    public function insert($data)
+    public function cadastrar($email, $senha)
     {
         $db = new DB();
-        $data = DB::dataArray($data);
-        $query = 'insert into usuarios (email, senha) values (' . $data['email'] . ',' . $data['senha'] . ')';
+        $query = 'insert into usuarios (email, senha) values (' . DB::data($email) . ',' . DB::data($senha)  . ')';
         return $db->execute($query);
     }
 }
