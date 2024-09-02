@@ -8,7 +8,7 @@
 						<a href="#" @click="editar(item.id)">
 							{{ item.created_at }}
 						</a>
-						{{ item.qtd }} Itens
+						<span>{{ item.qtd }} Itens</span>
 					</li>
 				</ul>
 			</div>
@@ -51,5 +51,8 @@
 		list-style: none;
 		display: flex;
 		justify-content: space-between;
+	}
+	.listas li a {
+		color: var(--bg-dark);
 	}
 </style>
