@@ -1,20 +1,12 @@
 <template>
 	<div class="header">
 		<div class="logo">LS</div>
-		<div class="menu">
-			<a href="#" @click="sair">Sair</a>
-		</div>
+		<MenuHeader />
 	</div>
 </template>
 
 <script setup>
-	import { useStore } from 'vuex';
-
-	const store = useStore();
-
-	function sair() {
-		store.commit('setLogado', false);
-	}
+	import MenuHeader from './MenuHeader.vue';
 </script>
 
 <style scoped>
