@@ -23,7 +23,7 @@ export default {
 			commit('setLoading', false);
 			return res.data;
 		},
-		async cadastrarUsuario({ commit }, data) {
+		async cadastrar_usuario({ commit }, data) {
 			commit('setLoading', true);
 			const res = await api.post('usuarios/cadastrar-usuario', data);
 			commit('setLoading', false);

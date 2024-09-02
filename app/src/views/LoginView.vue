@@ -33,10 +33,12 @@
 
 <script setup>
 	import { ref, reactive } from 'vue';
-	import { RouterLink } from 'vue-router';
+	import { RouterLink, useRouter } from 'vue-router';
 	import { useStore } from 'vuex';
+	import { updateBearer } from '../helpers/api';
 
 	const store = useStore();
+	const router = useRouter();
 
 	const dataForm = reactive({
 		email: 'senomar59@gmail.com',
@@ -55,6 +57,8 @@
 			localStorage.token = res.token;
 			store.commit('setLogado', localStorage.token);
 			store.commit('setAlert', 'Logado com sucesso');
+			updateBearer();
+			router.push('minhas-listas');
 		}
 	}
 </script>

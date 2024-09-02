@@ -1,7 +1,7 @@
 <?php
 
-include 'models/Usuario.php';
-include 'helpers/mail.php';
+include_once 'models/Usuario.php';
+include_once 'helpers/mail.php';
 
 class usuarios
 {
@@ -87,10 +87,10 @@ class usuarios
         }
     }
 
-    public function get_usuario()
+    public function usuario()
     {
-        $usuario_id = DB::check_login();
+        $usuarios_id = DB::check_login();
         $usuario = new Usuario();
-        return $usuario->selectById($usuario_id);
+        return $usuario->selectById($usuarios_id);
     }
 }

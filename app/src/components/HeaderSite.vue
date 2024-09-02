@@ -8,17 +8,12 @@
 </template>
 
 <script setup>
-	import { useRouter } from 'vue-router';
 	import { useStore } from 'vuex';
 
 	const store = useStore();
-	const router = useRouter();
 
 	function sair() {
-		delete localStorage.id;
-		delete localStorage.token;
 		store.commit('setLogado', false);
-		router.push('/');
 	}
 </script>
 
@@ -28,5 +23,11 @@
 		align-items: center;
 		justify-content: space-between;
 		padding: 12px 24px;
+		border-bottom: 1px solid #eee;
+		max-height: 52px;
+	}
+	.header .logo {
+		font-size: 24px;
+		font-weight: 900;
 	}
 </style>

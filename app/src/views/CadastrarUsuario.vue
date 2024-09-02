@@ -48,7 +48,7 @@
 	async function cadastrar() {
 		error.value = checkError();
 		if (error.value) return;
-		const res = await store.dispatch('cadastrarUsuario', dataForm);
+		const res = await store.dispatch('cadastrar_usuario', dataForm);
 		if (res.error) {
 			error.value = res.error;
 		} else {

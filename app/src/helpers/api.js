@@ -8,4 +8,8 @@ export const api = axios.create({
 	},
 });
 
-api.defaults.headers.Authorization = 'Bearer ' + localStorage.id + '_' + localStorage.token;
+export function updateBearer() {
+	api.defaults.headers.Authorization = 'Bearer ' + localStorage.id + '_' + localStorage.token;
+}
+
+updateBearer()

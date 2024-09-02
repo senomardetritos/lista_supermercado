@@ -1,5 +1,5 @@
 <?php
-include './header.php';
+include_once './header.php';
 
 class DB
 {
@@ -33,6 +33,8 @@ class DB
         }
         if (count($data) == 1) {
             return $data[0];
+        } else if (count($data) == 0) {
+            return null;
         } else {
             return $data;
         }
@@ -42,6 +44,15 @@ class DB
     {
         $this->mysql->query($query);
         return $this->mysql->insert_id;
+    }
+
+    public static function value($value)
+    {
+        $chars = ['\'', '`', '"'];
+        foreach ($chars as $char) {
+            $value = implode('', explode($char, $value));
+        }
+        return $value;
     }
 
     public static function data($value)
@@ -77,8 +88,8 @@ class DB
             $db = new DB();
             $result = $db->query('select * from usuarios where id = ' . DB::data($id));
 
-            $valid = crypt($result[0]['id'], $_ENV['CRYPT_SALT']);
-            $valid .= crypt($result[0]['email'], $_ENV['CRYPT_SALT']);
+            $valid = crypt($result['id'], $_ENV['CRYPT_SALT']);
+            $valid .= crypt($result['email'], $_ENV['CRYPT_SALT']);
         } catch (Exception $e) {
             echo json_encode(['error' => 'Authorization inválido']);
             die();
@@ -86,7 +97,7 @@ class DB
         if ($token == $valid) {
             return $id;
         } else {
-            echo json_encode(['error' => 'Token inválido']);
+            echo json_encode(['error' => 'Token inválido: ' . $token]);
             die();
         }
     }
