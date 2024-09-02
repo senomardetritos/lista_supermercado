@@ -8,7 +8,12 @@ export default {
 		limit: 3,
 		completed: false,
 	},
-	getters: {},
+	getters: {
+		getTotal(state) {
+			if (!state.lista.itens) return 0;
+			return state.lista.itens.reduce((acc, item) => acc + parseFloat(item.preco), 0);
+		},
+	},
 	mutations: {
 		resetListas(state) {
 			state.listas = [];

@@ -1,14 +1,21 @@
 <template>
 	<div class="container-md">
 		<div class="card">
-			<h1 class="title">Lista {{ lista.created_at }}</h1>
+			<h1 class="title">{{ lista.created_at }}</h1>
 			<div class="listas">
 				<ul>
-					<li v-for="(item, i) in lista.itens" :key="i">
-						<a href="#" :class="item.resolvido == 1 ? 'resolvido' : ''" @click="editar(item.id)">
+					<li v-for="(item, i) in lista.itens" :key="i" @click="editar(item.id)">
+						<a href="#" :class="item.resolvido == 1 ? 'resolvido' : ''">
 							<span v-if="item.nome">{{ item.nome }}</span>
 							<span v-else>Sem nome</span>
 						</a>
+						<span v-if="item.preco">R$ {{ item.preco }}</span>
+						<span v-else>R$ 0.00</span>
+					</li>
+					<hr />
+					<li>
+						<span>Total</span>
+						<span>R$ {{ total }}</span>
 					</li>
 				</ul>
 			</div>
@@ -27,6 +34,7 @@
 	const store = useStore();
 	const router = useRouter();
 	const lista = computed(() => store.state.listaStore.lista);
+	const total = computed(() => store.getters.getTotal);
 
 	const props = defineProps({
 		id: String,
@@ -55,13 +63,20 @@
 <style scoped>
 	.listas li {
 		list-style: none;
+		display: flex;
+		justify-content: space-between;
+		cursor: pointer;
 	}
 	.listas li a {
 		display: block;
 		color: var(--bg-dark);
-		padding: 4px 0px;
 	}
 	.listas li a.resolvido {
 		text-decoration: line-through;
+	}
+	.listas li span {
+		font-size: 14px;
+		font-weight: 700;
+		padding: 4px 0px;
 	}
 </style>
