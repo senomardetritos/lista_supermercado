@@ -4,6 +4,8 @@
 	--border-light: #eeeeee;
 	--bg-yellow: #ffc400;
 	--bg-primary: #0095ff;
+	--bg-secondary: #333;
+	--bg-danger: #f03030;
 }
 
 * {
@@ -13,6 +15,13 @@
 	font-family: Avenir, Helvetica, Arial, sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+}
+
+a {
+	color: var(--bg-primary);
+	text-decoration: none;
+	font-size: 16px;
+	font-weight: 700;
 }
 
 .container-sm {
@@ -67,17 +76,19 @@
 .form-group {
 	display: flex;
 	flex-direction: column;
-	padding: 4px 0px;
+	padding: 8px 0px;
 }
 
 .form-group label {
-	font-size: 12px;
+	font-size: 14px;
 	font-weight: 600;
 	color: var(--text-light);
 }
 
 .form-group input {
-	padding: 4px;
+	font-size: 16px;
+	padding: 4px 8px;
+	border-radius: 20px;
 	border: 1px solid var(--border-light);
 }
 
@@ -90,14 +101,21 @@
 }
 
 .btn {
-	padding: 8px 4px;
+	padding: 8px 16px;
 	border: 0px;
 	font-weight: 900;
 	text-transform: uppercase;
+	color: white;
 	cursor: pointer;
+	border-radius: 24px;
 }
 
 .btn.btn-primary {
 	background-color: var(--bg-primary);
-	color: white;
+}
+.btn.btn-secondary {
+	background-color: var(--bg-secondary);
+}
+.btn.btn-danger {
+	background-color: var(--bg-danger);
 }
