@@ -6,13 +6,11 @@
 				<div class="item-header">
 					<h3>{{ item.nome }}</h3>
 					<div>
-						<div v-if="item.resolvido == 1" class="badge">Já Peguei</div>
+						<div v-if="item.resolvido == 0" class="badge primary" @click="alterarPeguei">Pegar</div>
+						<div v-if="item.resolvido == 1" class="badge yellow" @click="alterarPeguei">Já Peguei</div>
 					</div>
 				</div>
 				<div class="footer-buttons">
-					<button type="button" class="btn btn-primary" @click="alterarPeguei">
-						{{ item.resolvido == 0 ? 'Já Peguei' : 'Devolver' }}
-					</button>
 					<button type="button" class="btn btn-primary" @click="setEditar">Editar Item</button>
 					<button type="button" class="btn btn-danger" @click="excluir">Excluir</button>
 					<button type="button" class="btn btn-secondary" @click="voltar">Voltar</button>
@@ -103,10 +101,17 @@
 		justify-content: space-between;
 	}
 	.item .item-header .badge {
-		background: var(--bg-yellow);
 		padding: 4px 14px;
 		border-radius: 12px;
 		font-size: 12px;
 		font-weight: 900;
+	}
+	.item .item-header .badge.primary {
+		background: var(--bg-primary);
+		color: white;
+	}
+	.item .item-header .badge.yellow {
+		background: var(--bg-yellow);
+		color: black;
 	}
 </style>
