@@ -8,10 +8,13 @@
 						<a href="#" @click="editar(item.id)">
 							{{ item.created_at }}
 						</a>
+						{{ item.qtd }} Itens
 					</li>
 				</ul>
 			</div>
-			<a href="#" @click="carregar_mais" v-if="!completed">Carregar mais</a>
+			<div class="text-center">
+				<a href="#" @click="carregar_mais" v-if="!completed">Carregar mais</a>
+			</div>
 		</div>
 	</div>
 </template>
@@ -39,3 +42,14 @@
 		router.push('/editar-lista/' + id);
 	}
 </script>
+
+<style scoped>
+	.listas {
+		padding: 12px 0px;
+	}
+	.listas li {
+		list-style: none;
+		display: flex;
+		justify-content: space-between;
+	}
+</style>

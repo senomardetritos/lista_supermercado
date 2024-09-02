@@ -14,7 +14,10 @@ class Lista
     public function selectAll($usuarios_id, $page, $limit)
     {
         $db = new DB();
-        $query = 'select id, created_at from listas where usuarios_id = ' . DB::data($usuarios_id) . ' limit ' . DB::value($page) . ', ' . DB::value($limit);
+        $query = 'select id, created_at, 
+            (select count(*) from lista_itens where lista_itens.listas_id = listas.id) as qtd
+            from listas where usuarios_id = ' . DB::data($usuarios_id) . ' 
+            order by created_at desc limit ' . DB::value($page) . ', ' . DB::value($limit);
         return $db->query($query);
     }
 

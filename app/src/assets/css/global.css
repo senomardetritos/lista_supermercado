@@ -119,3 +119,8 @@ a {
 .btn.btn-danger {
 	background-color: var(--bg-danger);
 }
+
+.text-center {
+	display: flex;
+	justify-content: center;
+}

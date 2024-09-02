@@ -13,6 +13,7 @@ export default {
 		resetListas(state) {
 			state.listas = [];
 			state.page = 0;
+			state.completed = false;
 		},
 		addListas(state, data) {
 			if (data) {
