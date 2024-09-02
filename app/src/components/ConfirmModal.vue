@@ -22,7 +22,7 @@
 	}
 
 	function continuar() {
-		store.commit('setConfirm', null);
 		store.state.confirm.continuar();
+		store.commit('setConfirm', null);
 	}
 </script>

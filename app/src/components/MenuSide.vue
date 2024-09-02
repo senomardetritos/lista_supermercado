@@ -15,18 +15,26 @@
 </template>
 
 <script setup>
-	import { RouterLink } from 'vue-router';
+	import { useRouter, RouterLink } from 'vue-router';
 	import { useStore } from 'vuex';
 
 	const store = useStore();
+	const router = useRouter();
 
 	async function cadastrar() {
-		const res = await store.dispatch('cadastrar_lista');
-		if (res.error) {
-			store.commit('setAlert', res.error);
-		} else {
-			store.commit('setAlert', 'Usuário cadastrado com sucesso');
-		}
+		store.commit('setConfirm', {
+			titulo: 'Adicionar Lista',
+			texto: 'Adicionar uma nova lista?',
+			continuar: async () => {
+				const res = await store.dispatch('cadastrar_lista');
+				if (res.error) {
+					store.commit('setAlert', res.error);
+				} else {
+					router.push(`/editar-lista/${res}`);
+					store.commit('setAlert', 'Lista Cadastrada com sucesso!');
+				}
+			},
+		});
 	}
 
 	function sair() {

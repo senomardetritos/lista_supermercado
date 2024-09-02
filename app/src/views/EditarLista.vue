@@ -17,7 +17,7 @@
 </template>
 
 <script setup>
-	import { computed, defineProps, onMounted } from 'vue';
+	import { computed, defineProps, onMounted, watch } from 'vue';
 	import { useRouter } from 'vue-router';
 	import { useStore } from 'vuex';
 
@@ -29,6 +29,13 @@
 		id: String,
 	});
 
+	watch(
+		() => props.id,
+		() => {
+			store.dispatch('busca_lista', props.id);
+		}
+	);
+	
 	onMounted(() => {
 		store.dispatch('busca_lista', props.id);
 	});
