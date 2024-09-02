@@ -5,7 +5,7 @@
 			<div class="listas">
 				<ul>
 					<li v-for="(item, i) in lista.itens" :key="i">
-						<a href="#" @click="editar(item.id)">
+						<a href="#" :class="item.resolvido == 1 ? 'resolvido' : ''" @click="editar(item.id)">
 							{{ item.nome }}
 						</a>
 					</li>
@@ -54,5 +54,13 @@
 <style scoped>
 	.listas li {
 		list-style: none;
+	}
+	.listas li a {
+		display: block;
+		color: var(--bg-dark);
+		padding: 4px 0px;
+	}
+	.listas li a.resolvido {
+		text-decoration: line-through;
 	}
 </style>
