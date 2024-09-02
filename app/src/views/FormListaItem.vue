@@ -6,25 +6,30 @@
 				<div class="item-header">
 					<h3>{{ item.nome }}</h3>
 					<div>
-						<div v-if="item.resolvido == 1">Já Peguei</div>
+						<div v-if="item.resolvido == 1" class="badge">Já Peguei</div>
 					</div>
 				</div>
-				<button type="button" class="btn btn-primary" @click="alterarPeguei">
-					{{ item.resolvido == 0 ? 'Já Peguei' : 'Devolver' }}
-				</button>
-				<button type="button" class="btn btn-primary" @click="setEditar">Editar Item</button>
-				<button type="button" class="btn btn-danger" @click="excluir">Excluir</button>
-				<button type="button" class="btn btn-secondary" @click="voltar">Voltar</button>
+				<div class="btns">
+					<button type="button" class="btn btn-primary" @click="alterarPeguei">
+						{{ item.resolvido == 0 ? 'Já Peguei' : 'Devolver' }}
+					</button>
+					<button type="button" class="btn btn-primary" @click="setEditar">Editar Item</button>
+					<button type="button" class="btn btn-danger" @click="excluir">Excluir</button>
+					<button type="button" class="btn btn-secondary" @click="voltar">Voltar</button>
+				</div>
 			</div>
 			<form @submit.prevent="salvar" v-else>
 				<div class="form-group">
 					<label for="nome">Item</label>
 					<input type="nome" v-model="dataForm.nome" id="nome" required />
 				</div>
-				<button type="submit" class="btn btn-primary">
-					{{ item ? 'Editar Item' : 'Adicionar Item' }}
-				</button>
-				<button type="button" class="btn btn-secondary" @click="voltar">Voltar</button>
+				<div class="btns">
+					<button type="submit" class="btn btn-primary">
+						{{ item ? 'Editar Item' : 'Adicionar Item' }}
+					</button>
+					<button type="button" class="btn btn-secondary" v-if="item && editar" @click="cancelar">Cancelar</button>
+					<button type="button" class="btn btn-secondary" @click="voltar">Lista</button>
+				</div>
 			</form>
 		</div>
 	</div>
@@ -68,6 +73,10 @@
 		store.commit('setEditar', true);
 	}
 
+	function cancelar() {
+		store.commit('setEditar', false);
+	}
+
 	async function alterarPeguei() {
 		store.dispatch('alterar_peguei', props.id);
 	}
@@ -92,5 +101,19 @@
 	.item .item-header {
 		display: flex;
 		justify-content: space-between;
+	}
+	.item .item-header .badge {
+		background: var(--bg-yellow);
+		padding: 4px 14px;
+		border-radius: 12px;
+		font-size: 12px;
+		font-weight: 900;
+	}
+	.btns {
+		display: flex;
+		justify-content: space-between;
+		margin-top: 16px;
+		padding-top: 16px;
+		border-top: 1px solid var(--border-light);
 	}
 </style>
