@@ -9,6 +9,7 @@ export default createStore({
 		loading: false,
 		alert: '',
 		logado: false,
+		confirm: null,
 	},
 	getters: {},
 	mutations: {
@@ -17,6 +18,9 @@ export default createStore({
 		},
 		setAlert(state, alert) {
 			state.alert = alert;
+		},
+		setConfirm(state, confirm) {
+			state.confirm = confirm;
 		},
 		setLogado(state, logado) {
 			state.logado = logado;

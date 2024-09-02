@@ -1,50 +1,30 @@
 <template>
 	<div>
-		<div class="alert"></div>
-		<div class="alert-container">
+		<div class="modal"></div>
+		<div class="modal-container">
 			<div class="card">
 				<h3>{{ store.state.alert }}</h3>
+				<button type="button" class="btn btn-primary" @click="fechar">Fechar</button>
 			</div>
 		</div>
 	</div>
 </template>
 
 <script setup>
-	import { onMounted } from 'vue';
+	import { ref, onMounted } from 'vue';
 	import { useStore } from 'vuex';
 
 	const store = useStore();
+	const interval = ref(null);
 
 	onMounted(() => {
-		setTimeout(() => {
+		interval.value = setTimeout(() => {
 			store.commit('setAlert', '');
-		}, 2000);
+		}, 3000);
 	});
-</script>
 
-<style scoped>
-	.alert {
-		content: '';
-		position: fixed;
-		top: 0px;
-		left: 0px;
-		width: 100vw;
-		height: 100vh;
-		background-color: black;
-		opacity: 0.3;
-		z-index: 1;
+	function fechar() {
+		store.commit('setAlert', '');
+		clearInterval(interval.value);
 	}
-	.alert-container {
-		position: fixed;
-		top: 0px;
-		left: 0px;
-		width: 100vw;
-		height: 100vh;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-		opacity: 1;
-		z-index: 10;
-	}
-</style>
+</script>

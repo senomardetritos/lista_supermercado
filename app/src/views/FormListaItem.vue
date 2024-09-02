@@ -77,8 +77,14 @@
 	}
 
 	async function excluir() {
-		await store.dispatch('excluir_item', props.id);
-		voltar();
+		store.commit('setConfirm', {
+			titulo: 'Excluir Item',
+			texto: `Deseja excluir ${item.value.nome}?`,
+			continuar: async () => {
+				await store.dispatch('excluir_item', props.id);
+				voltar();
+			},
+		});
 	}
 </script>
 
