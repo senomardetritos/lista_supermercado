@@ -6,7 +6,8 @@
 				<ul>
 					<li v-for="(item, i) in lista.itens" :key="i">
 						<a href="#" :class="item.resolvido == 1 ? 'resolvido' : ''" @click="editar(item.id)">
-							{{ item.nome }}
+							<span v-if="item.nome">{{ item.nome }}</span>
+							<span v-else>Sem nome</span>
 						</a>
 					</li>
 				</ul>

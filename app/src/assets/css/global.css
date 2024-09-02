@@ -127,6 +127,15 @@ a {
 .btn.btn-danger {
 	background-color: var(--bg-danger);
 }
+.btn.btn-yellow {
+	background-color: var(--bg-yellow);
+	color: black;
+}
+
+.btn.btn-sm {
+	font-size: 12px;
+	padding: 4px 8px;
+}
 
 .text-center {
 	display: flex;

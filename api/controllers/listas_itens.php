@@ -12,7 +12,7 @@ class listas_itens
         $lista_item = new ListaItem();
         if ($post->id) {
             // UPDATE
-            return $lista_item->atualizar($usuarios_id, $post->id, $post->nome);
+            return $lista_item->atualizar($usuarios_id, $post->id, $post->nome, $post->preco);
         } else {
             // INSERT
             return $lista_item->cadastrar($usuarios_id, $post->listas_id, $post->nome);

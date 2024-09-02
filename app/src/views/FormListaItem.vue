@@ -4,10 +4,12 @@
 			<h1 class="title">Item da Lista</h1>
 			<div class="item" v-if="item && !editar">
 				<div class="item-header">
-					<h3>{{ item.nome }}</h3>
+					<h5>{{ item.nome }}</h5>
+					<h5 v-if="item.preco">R$ {{ item.preco }}</h5>
+					<h5 v-else>R$ 0.00</h5>
 					<div>
-						<div v-if="item.resolvido == 0" class="badge primary" @click="alterarPeguei">Pegar</div>
-						<div v-if="item.resolvido == 1" class="badge yellow" @click="alterarPeguei">Já Peguei</div>
+						<div v-if="item.resolvido == 0" class="btn btn-sm btn-primary" @click="alterarPeguei">Pegar</div>
+						<div v-if="item.resolvido == 1" class="btn btn-sm btn-danger" @click="alterarPeguei">Devolver</div>
 					</div>
 				</div>
 				<div class="footer-buttons">
@@ -20,6 +22,10 @@
 				<div class="form-group">
 					<label for="nome">Item</label>
 					<input type="nome" v-model="dataForm.nome" id="nome" required />
+				</div>
+				<div class="form-group" v-if="item">
+					<label for="preco">Preço</label>
+					<input type="number" v-model="dataForm.preco" id="preco" required step="0.01" />
 				</div>
 				<div class="footer-buttons">
 					<button type="submit" class="btn btn-primary">
@@ -68,6 +74,7 @@
 
 	function setEditar() {
 		dataForm.nome = item.value.nome;
+		dataForm.preco = item.value.preco;
 		store.commit('setEditar', true);
 	}
 
@@ -76,7 +83,13 @@
 	}
 
 	async function alterarPeguei() {
-		store.dispatch('alterar_peguei', props.id);
+		await store.dispatch('alterar_peguei', props.id);
+		if (item.value.resolvido == 1) setEditar();
+		else {
+			dataForm.nome = item.value.nome;
+			dataForm.preco = 0;
+			salvar();
+		}
 	}
 
 	function voltar() {
@@ -99,19 +112,5 @@
 	.item .item-header {
 		display: flex;
 		justify-content: space-between;
-	}
-	.item .item-header .badge {
-		padding: 4px 14px;
-		border-radius: 12px;
-		font-size: 12px;
-		font-weight: 900;
-	}
-	.item .item-header .badge.primary {
-		background: var(--bg-primary);
-		color: white;
-	}
-	.item .item-header .badge.yellow {
-		background: var(--bg-yellow);
-		color: black;
 	}
 </style>
