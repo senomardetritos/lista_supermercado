@@ -11,7 +11,9 @@
 					</li>
 				</ul>
 			</div>
-			<button type="button" class="btn btn-primary" @click="adicionar">Adicionar Item</button>
+			<div class="footer-buttons">
+				<button type="button" class="btn btn-primary" @click="adicionar">Adicionar Item</button>
+			</div>
 		</div>
 	</div>
 </template>
@@ -35,7 +37,7 @@
 			store.dispatch('busca_lista', props.id);
 		}
 	);
-	
+
 	onMounted(() => {
 		store.dispatch('busca_lista', props.id);
 	});
@@ -48,3 +50,9 @@
 		router.push('/item-lista/' + id);
 	}
 </script>
+
+<style scoped>
+	.listas li {
+		list-style: none;
+	}
+</style>

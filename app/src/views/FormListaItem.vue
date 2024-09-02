@@ -9,7 +9,7 @@
 						<div v-if="item.resolvido == 1" class="badge">Já Peguei</div>
 					</div>
 				</div>
-				<div class="btns">
+				<div class="footer-buttons">
 					<button type="button" class="btn btn-primary" @click="alterarPeguei">
 						{{ item.resolvido == 0 ? 'Já Peguei' : 'Devolver' }}
 					</button>
@@ -23,7 +23,7 @@
 					<label for="nome">Item</label>
 					<input type="nome" v-model="dataForm.nome" id="nome" required />
 				</div>
-				<div class="btns">
+				<div class="footer-buttons">
 					<button type="submit" class="btn btn-primary">
 						{{ item ? 'Editar Item' : 'Adicionar Item' }}
 					</button>
@@ -108,12 +108,5 @@
 		border-radius: 12px;
 		font-size: 12px;
 		font-weight: 900;
-	}
-	.btns {
-		display: flex;
-		justify-content: space-between;
-		margin-top: 16px;
-		padding-top: 16px;
-		border-top: 1px solid var(--border-light);
 	}
 </style>
