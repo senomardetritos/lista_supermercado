@@ -2,9 +2,13 @@
 	<div>
 		<div class="modal"></div>
 		<div class="modal-container">
-			<div class="card">
-				<h3>{{ store.state.alert }}</h3>
-				<button type="button" class="btn btn-primary" @click="fechar">Fechar</button>
+			<div class="container-sm">
+				<div class="card">
+					<h3 class="title">{{ store.state.alert }}</h3>
+					<div class="footer-buttons">
+						<button type="button" class="btn btn-primary" @click="fechar">Fechar</button>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
