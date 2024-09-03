@@ -27,7 +27,7 @@ class Mail
         $this->mail->IsHTML(true);
         $this->mail->Username = $_ENV['MAIL_USERNAME'];
         $this->mail->Password = $_ENV['MAIL_PASSWORD'];
-        $this->mail->SetFrom("contato@senomalabs.com", 'SenomaLabs');
+        $this->mail->SetFrom($_ENV['MAIL_FROM'], $_ENV['MAIL_FROM_NAME']);
     }
 
     public function send($to, $subject, $body)

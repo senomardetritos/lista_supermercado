@@ -41,8 +41,8 @@
 	const router = useRouter();
 
 	const dataForm = reactive({
-		email: 'senomar59@gmail.com',
-		senha: '123',
+		email: '',
+		senha: '',
 	});
 
 	const error = ref('');
