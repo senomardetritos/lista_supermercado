@@ -4,12 +4,16 @@
 			<h1 class="title">Minhas Listas</h1>
 			<div class="listas">
 				<ul>
-					<li v-for="(item, i) in listas" :key="i">
-						<a href="#" @click="editar(item.id)">
-							{{ dateToHtml(item.created_at) }}
-							{{ timeToHtml(item.created_at) }}
-						</a>
-						<span>{{ item.qtd }} Itens</span>
+					<li v-for="(item, i) in listas" :key="i" @click="editar(item.id)">
+						<div>
+							<h4>{{ dateToHtml(item.created_at) }}</h4>
+							<span>{{ timeToHtml(item.created_at) }}</span>
+						</div>
+						<div class="right">
+							<h4 v-if="item.total">R$ {{ item.total }}</h4>
+							<h4 v-else>R$ 0.00</h4>
+							<span>{{ item.qtd }} Itens</span>
+						</div>
 					</li>
 				</ul>
 			</div>
@@ -47,14 +51,26 @@
 
 <style scoped>
 	.listas {
-		padding: 12px 0px;
+		padding: 0px 0px;
+		margin-bottom: 16px;
 	}
 	.listas li {
 		list-style: none;
 		display: flex;
 		justify-content: space-between;
+		padding: 8px 0px;
+		border-bottom: 1px solid var(--border-light);
 	}
 	.listas li a {
 		color: var(--bg-dark);
+	}
+	.listas .right {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-end;
+	}
+	.listas span {
+		font-size: 12px;
+		font-weight: 600;
 	}
 </style>

@@ -15,7 +15,8 @@ class Lista
     {
         $db = new DB();
         $query = 'select id, created_at, 
-            (select count(*) from lista_itens where lista_itens.listas_id = listas.id) as qtd
+            (select count(*) from lista_itens where lista_itens.listas_id = listas.id) as qtd,
+            (select sum(lista_itens.preco) from lista_itens where lista_itens.listas_id = listas.id) as total
             from listas where usuarios_id = ' . DB::data($usuarios_id) . ' 
             order by created_at desc limit ' . DB::value($page) . ', ' . DB::value($limit);
         return $db->query($query);
