@@ -27,7 +27,10 @@
 				</ul>
 			</div>
 			<div class="footer-buttons">
-				<button type="button" class="btn btn-primary" @click="adicionar">Adicionar Item</button>
+				<button type="button" class="btn btn-primary" @click="adicionar">Novo Item</button>
+				<button type="button" class="btn btn-danger" @click="excluir">Excluir</button>
+				<button type="button" class="btn btn-secondary" @click="voltar">Listas</button>
+				<button type="button" class="btn btn-primary" @click="voltar">Por Email</button>
 			</div>
 		</div>
 	</div>
@@ -65,6 +68,25 @@
 
 	function editar(id) {
 		router.push('/item-lista/' + id);
+	}
+
+	function excluir() {
+		store.commit('setConfirm', {
+			titulo: 'Excluir Lista',
+			texto: `Deseja excluir ${dateToHtml(lista.value.created_at)} das ${timeToHtml(lista.value.created_at)}?`,
+			continuar: async () => {
+				const res = await store.dispatch('excluir_lista', lista.value.id);
+				if (res.error) {
+					store.commit('setAlert', res.error);
+				} else {
+					voltar();
+				}
+			},
+		});
+	}
+
+	function voltar() {
+		router.push('/minhas-listas');
 	}
 </script>
 

@@ -59,6 +59,7 @@
 		display: flex;
 		justify-content: space-between;
 		padding: 8px 0px;
+		cursor: pointer;
 		border-bottom: 1px solid var(--border-light);
 	}
 	.listas li a {

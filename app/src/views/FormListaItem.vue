@@ -52,6 +52,7 @@
 
 	const dataForm = reactive({
 		nome: '',
+		preco: 0,
 	});
 
 	const props = defineProps({
@@ -67,9 +68,13 @@
 	async function salvar() {
 		dataForm.id = props.id || null;
 		dataForm.listas_id = lista.value.id;
-		await store.dispatch('salvar_item', dataForm);
-		await store.dispatch('buscar_item', props.id);
-		if (!props.id) voltar();
+		const res = await store.dispatch('salvar_item', dataForm);
+		if (res.error) {
+			store.commit('setAlert', res.error);
+		} else {
+			await store.dispatch('buscar_item', props.id);
+			if (!props.id) voltar();
+		}
 	}
 
 	function setEditar() {
@@ -101,8 +106,12 @@
 			titulo: 'Excluir Item',
 			texto: `Deseja excluir ${item.value.nome}?`,
 			continuar: async () => {
-				await store.dispatch('excluir_item', props.id);
-				voltar();
+				const res = await store.dispatch('excluir_item', props.id);
+				if (res.error) {
+					store.commit('setAlert', res.error);
+				} else {
+					voltar();
+				}
 			},
 		});
 	}
