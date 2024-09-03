@@ -6,7 +6,8 @@
 				<ul>
 					<li v-for="(item, i) in listas" :key="i">
 						<a href="#" @click="editar(item.id)">
-							{{ item.created_at }}
+							{{ dateToHtml(item.created_at) }}
+							{{ timeToHtml(item.created_at) }}
 						</a>
 						<span>{{ item.qtd }} Itens</span>
 					</li>
@@ -23,6 +24,7 @@
 	import { computed, onMounted } from 'vue';
 	import { useRouter } from 'vue-router';
 	import { useStore } from 'vuex';
+	import { dateToHtml, timeToHtml } from '../helpers/date';
 
 	const store = useStore();
 	const router = useRouter();

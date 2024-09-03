@@ -1,7 +1,16 @@
 <template>
 	<div class="container-md">
 		<div class="card">
-			<h1 class="title">{{ lista.created_at }}</h1>
+			<div class="header">
+				<div>
+					<h4>{{ dateToHtml(lista.created_at) }}</h4>
+					<span>{{ timeToHtml(lista.created_at) }}</span>
+				</div>
+				<div class="right">
+					<span>Total</span>
+					<h4>R$ {{ total }}</h4>
+				</div>
+			</div>
 			<div class="listas">
 				<ul>
 					<li v-for="(item, i) in lista.itens" :key="i" @click="editar(item.id)">
@@ -11,11 +20,6 @@
 						</a>
 						<span v-if="item.preco">R$ {{ item.preco }}</span>
 						<span v-else>R$ 0.00</span>
-					</li>
-					<hr />
-					<li>
-						<span>Total</span>
-						<span>R$ {{ total }}</span>
 					</li>
 				</ul>
 			</div>
@@ -30,6 +34,7 @@
 	import { computed, defineProps, onMounted, watch } from 'vue';
 	import { useRouter } from 'vue-router';
 	import { useStore } from 'vuex';
+	import { dateToHtml, timeToHtml } from '../helpers/date';
 
 	const store = useStore();
 	const router = useRouter();
@@ -61,6 +66,25 @@
 </script>
 
 <style scoped>
+	.header {
+		display: flex;
+		justify-content: space-between;
+		border-bottom: 1px solid var(--border-light);
+		padding-bottom: 8px;
+		margin-bottom: 8px;
+	}
+
+	.header .right {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-end;
+	}
+
+	.header span {
+		font-size: 12px;
+		font-weight: 600;
+	}
+
 	.listas li {
 		list-style: none;
 		display: flex;
