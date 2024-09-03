@@ -5,15 +5,15 @@
 			<form @submit.prevent="cadastrar">
 				<div class="form-group">
 					<label for="email">Email</label>
-					<input type="email" v-model="dataForm.email" id="email" required />
+					<input type="email" v-model="dataForm.email" id="email" placeholder="Email" required />
 				</div>
 				<div class="form-group">
 					<label for="senha">Senha</label>
-					<input type="password" v-model="dataForm.senha" id="senha" required />
+					<input type="password" v-model="dataForm.senha" id="senha" placeholder="Senha" required />
 				</div>
 				<div class="form-group">
 					<label for="senha2">Repetir Senha</label>
-					<input type="password" v-model="dataForm.senha2" id="senha2" required />
+					<input type="password" v-model="dataForm.senha2" id="senha2" placeholder="Repetir Senha" required />
 				</div>
 				<div class="form-group">
 					<button type="submit" class="btn btn-primary">Cadastrar</button>

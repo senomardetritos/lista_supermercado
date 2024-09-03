@@ -11,11 +11,11 @@
 				</div>
 				<div class="form-group">
 					<label for="email">Email</label>
-					<input type="email" v-model="dataForm.email" id="email" required />
+					<input type="email" v-model="dataForm.email" id="email" placeholder="Email" required />
 				</div>
 				<div class="form-group">
 					<label for="senha">Senha</label>
-					<input type="password" v-model="dataForm.senha" id="senha" required />
+					<input type="password" v-model="dataForm.senha" id="senha" placeholder="Senha" required />
 				</div>
 				<div class="form-group">
 					<button type="submit" class="btn btn-primary">Logar</button>

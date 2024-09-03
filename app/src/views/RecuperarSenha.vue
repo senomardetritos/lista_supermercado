@@ -5,15 +5,15 @@
 			<form @submit.prevent="enviar_recuperar">
 				<div class="form-group">
 					<label for="email">Email</label>
-					<input type="email" v-model="dataForm.email" id="email" required />
+					<input type="email" v-model="dataForm.email" id="email" placeholder="Email" required />
 				</div>
 				<div class="form-group" v-if="showCodigo">
 					<label for="codigo">Código</label>
-					<input type="codigo" v-model="dataForm.codigo" id="codigo" required />
+					<input type="codigo" v-model="dataForm.codigo" id="codigo" placeholder="Código recebido por email" required />
 				</div>
 				<div class="form-group" v-if="showCodigo">
 					<label for="senha">Nova Senha</label>
-					<input type="password" v-model="dataForm.senha" id="senha" required />
+					<input type="password" v-model="dataForm.senha" id="senha" placeholder="Nova Senha" required />
 				</div>
 				<div class="form-group" v-if="showCodigo">
 					<button type="button" class="btn btn-primary" @click="recuperar">Alterar Senha</button>

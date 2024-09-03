@@ -21,11 +21,11 @@
 			<form @submit.prevent="salvar" v-else>
 				<div class="form-group">
 					<label for="nome">Item</label>
-					<input type="nome" v-model="dataForm.nome" id="nome" required />
+					<input type="nome" v-model="dataForm.nome" id="nome" placeholder="Item" required />
 				</div>
 				<div class="form-group" v-if="item">
 					<label for="preco">Preço</label>
-					<input type="number" v-model="dataForm.preco" id="preco" required step="0.01" />
+					<input type="number" v-model="dataForm.preco" id="preco" placeholder="Preço" required step="0.01" />
 				</div>
 				<div class="footer-buttons">
 					<button type="submit" class="btn btn-primary">
