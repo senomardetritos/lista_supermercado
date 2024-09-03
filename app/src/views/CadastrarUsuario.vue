@@ -21,8 +21,10 @@
 				<div class="form-group" v-if="error">
 					<div class="form-error">{{ error }}</div>
 				</div>
-				<div class="text-center">
-					<RouterLink to="/">Voltar para Login</RouterLink>
+				<div class="form-group">
+					<div class="text-center">
+						<RouterLink to="/">Voltar para Login</RouterLink>
+					</div>
 				</div>
 			</form>
 		</div>
