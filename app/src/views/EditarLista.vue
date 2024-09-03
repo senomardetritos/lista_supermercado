@@ -12,7 +12,7 @@
 				</div>
 			</div>
 			<div class="listas">
-				<ul>
+				<ul v-if="lista.itens && lista.itens.length > 0">
 					<li v-for="(item, i) in lista.itens" :key="i" @click="editar(item.id)">
 						<a href="#" :class="item.resolvido == 1 ? 'resolvido' : ''">
 							<span v-if="item.nome">{{ item.nome }}</span>
@@ -21,6 +21,9 @@
 						<span v-if="item.preco">R$ {{ item.preco }}</span>
 						<span v-else>R$ 0.00</span>
 					</li>
+				</ul>
+				<ul v-else>
+					<li>Nenhum item adicionado</li>
 				</ul>
 			</div>
 			<div class="footer-buttons">
