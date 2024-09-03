@@ -84,12 +84,13 @@ a {
 .form-group {
 	display: flex;
 	flex-direction: column;
-	padding: 8px 0px;
+	padding: 4px 0px;
 }
 
 .form-group label {
-	font-size: 14px;
-	font-weight: 600;
+	font-size: 12px;
+	font-weight: 900;
+	padding: 4px 8px;
 	color: var(--text-light);
 }
 
