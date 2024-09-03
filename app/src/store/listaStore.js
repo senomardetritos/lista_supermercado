@@ -64,5 +64,11 @@ export default {
 			commit('setLoading', false);
 			return res.data;
 		},
+		async enviar_lista_email({ commit }, id) {
+			commit('setLoading', true);
+			const res = await api.post(`listas/enviar-lista-email/${id}`);
+			commit('setLoading', false);
+			return res.data;
+		},
 	},
 };

@@ -30,7 +30,7 @@
 				<button type="button" class="btn btn-primary" @click="adicionar">Novo Item</button>
 				<button type="button" class="btn btn-danger" @click="excluir">Excluir</button>
 				<button type="button" class="btn btn-secondary" @click="voltar">Listas</button>
-				<button type="button" class="btn btn-primary" @click="voltar">Por Email</button>
+				<button type="button" class="btn btn-primary" @click="enviar">Por Email</button>
 			</div>
 		</div>
 	</div>
@@ -87,6 +87,21 @@
 
 	function voltar() {
 		router.push('/minhas-listas');
+	}
+
+	function enviar() {
+		store.commit('setConfirm', {
+			titulo: 'Enviar Lista',
+			texto: `Deseja enviar essa lista por email?`,
+			continuar: async () => {
+				const res = await store.dispatch('enviar_lista_email', lista.value.id);
+				if (res.error) {
+					store.commit('setAlert', res.error);
+				} else {
+					store.commit('setAlert', 'Lista enviada com sucesso');
+				}
+			},
+		});
 	}
 </script>
 
