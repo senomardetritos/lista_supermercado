@@ -28,4 +28,13 @@ class Lista
         $query = 'insert into listas (usuarios_id) values (' . DB::data($usuarios_id) . ')';
         return $db->execute($query);
     }
+
+    public function excluir($usuarios_id, $listas_id)
+    {
+        $db = new DB();
+        $query = 'delete from lista_itens where usuarios_id = ' . DB::data($usuarios_id) . ' and listas_id = ' . DB::data($listas_id);
+        $db->execute($query);
+        $query = 'delete from listas where usuarios_id = ' . DB::data($usuarios_id) . ' and id = ' . DB::data($listas_id);
+        return $db->execute($query);
+    }
 }

@@ -58,5 +58,11 @@ export default {
 			commit('setLista', res.data);
 			commit('setLoading', false);
 		},
+		async excluir_lista({ commit }, id) {
+			commit('setLoading', true);
+			const res = await api.post(`listas/excluir-lista/${id}`);
+			commit('setLoading', false);
+			return res.data;
+		},
 	},
 };

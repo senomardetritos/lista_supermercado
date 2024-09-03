@@ -30,4 +30,11 @@ class listas
         $lista = new Lista();
         return $lista->cadastrar($usuarios_id);
     }
+
+    public function excluir_lista($post, $listas_id)
+    {
+        $usuarios_id = DB::check_login();
+        $lista = new Lista();
+        return $lista->excluir($usuarios_id, $listas_id);
+    }
 }
