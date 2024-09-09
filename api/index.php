@@ -1,5 +1,5 @@
 <?php
-include_once 'helpers/header.php';
+include_once './helpers/header.php';
 
 try {
     $params = explode('/api/', $_SERVER['REQUEST_URI'])[1];
@@ -10,7 +10,7 @@ try {
         $action = implode('_', (explode('-', $action)));
         $params = explode('/', $params);
         array_splice($params, 0, 2);
-        include_once 'controllers/' . $controller . '.php';
+        include_once './controllers/' . $controller . '.php';
         $instance = new $controller();
         $post = json_decode(file_get_contents('php://input'));
         echo json_encode($instance->$action($post, ...$params));

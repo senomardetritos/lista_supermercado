@@ -1,11 +1,11 @@
 <?php
 
-include_once 'models/Usuario.php';
-include_once 'models/Lista.php';
-include_once 'models/ListaItem.php';
+include_once './models/Usuario.php';
+include_once './models/Lista.php';
+include_once './models/ListaItem.php';
 
-include_once 'helpers/mail.php';
-include_once 'mails/lista_compras.php';
+include_once './helpers/mail.php';
+include_once './mails/lista_compras.php';
 
 class listas
 {

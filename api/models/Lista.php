@@ -1,6 +1,6 @@
 <?php
 
-include_once 'helpers/db.php';
+include_once './helpers/db.php';
 
 class Lista
 {

@@ -1,7 +1,7 @@
 <?php
 
-include_once 'models/Usuario.php';
-include_once 'helpers/mail.php';
+include_once './models/Usuario.php';
+include_once './helpers/mail.php';
 
 class usuarios
 {

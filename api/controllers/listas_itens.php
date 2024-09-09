@@ -1,7 +1,7 @@
 <?php
 
-include_once 'models/Lista.php';
-include_once 'models/ListaItem.php';
+include_once './models/Lista.php';
+include_once './models/ListaItem.php';
 
 class listas_itens
 {

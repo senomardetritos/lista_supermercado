@@ -1,7 +1,7 @@
 <?php
 
-require('vendor/PHPMailer/src/PHPMailer.php');
-require('vendor/PHPMailer/src/SMTP.php');
+require('./vendor/PHPMailer/src/PHPMailer.php');
+require('./vendor/PHPMailer/src/SMTP.php');
 
 class Mail
 {
