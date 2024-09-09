@@ -11,7 +11,7 @@ export default {
 	getters: {
 		getTotal(state) {
 			if (!state.lista.itens) return 0;
-			return state.lista.itens.reduce((acc, item) => acc + parseFloat(item.preco), 0);
+			return state.lista.itens.reduce((acc, item) => acc + parseInt(item.quantidade) * parseFloat(item.preco), 0);
 		},
 	},
 	mutations: {

@@ -18,9 +18,9 @@ class EmailListaCompras
             $html .= '<td>' . $item['nome'] . '</td>';
             $html .= '<td>' . $item['quantidade'] . '</td>';
             $html .= '<td align="right">R$ ' . $item['preco'] . '</td>';
-            $html .= '<td align="right">R$ ' . $item['preco'] . '</td>';
+            $html .= '<td align="right">R$ ' . ($item['quantidade'] * $item['preco']) . '</td>';
             $html .= '</tr>';
-            $total += $item['preco'];
+            $total += ($item['quantidade'] * $item['preco']);
         }
         $html .= '<tr><th align="left">Total</th><th></th><th></th><th align="right">R$ ' . $total . '</th></tr>';
         $html .= '</table>';

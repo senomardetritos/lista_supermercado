@@ -5,14 +5,16 @@
 			<div class="item" v-if="item && !editar">
 				<div class="item-header">
 					<h5>{{ item.nome }}</h5>
+					<h5 v-if="item.quantidade">{{ item.quantidade }}</h5>
+					<h5 v-else>1</h5>
 					<h5 v-if="item.preco">R$ {{ item.preco }}</h5>
 					<h5 v-else>R$ 0.00</h5>
-					<div>
-						<div v-if="item.resolvido == 0" class="btn btn-sm btn-primary" @click="alterarPeguei">Pegar</div>
-						<div v-if="item.resolvido == 1" class="btn btn-sm btn-danger" @click="alterarPeguei">Devolver</div>
-					</div>
+					<h5 v-if="item.preco">R$ {{ parseInt(item.quantidade) * parseFloat(item.preco) }}</h5>
+					<h5 v-else>R$ 0.00</h5>
 				</div>
 				<div class="footer-buttons">
+					<button type="button" v-if="item.resolvido == 0" class="btn btn-primary" @click="alterarPeguei">Pegar</button>
+					<button type="button" v-if="item.resolvido == 1" class="btn btn-danger" @click="alterarPeguei">Devolver</button>
 					<button type="button" class="btn btn-primary" @click="setEditar">Editar Item</button>
 					<button type="button" class="btn btn-danger" @click="excluir">Excluir</button>
 					<button type="button" class="btn btn-secondary" @click="voltar">Voltar</button>
@@ -22,6 +24,10 @@
 				<div class="form-group">
 					<label for="nome">Item</label>
 					<input type="nome" v-model="dataForm.nome" id="nome" placeholder="Item" required />
+				</div>
+				<div class="form-group" v-if="item">
+					<label for="quantidade">Quantidade</label>
+					<input type="number" v-model="dataForm.quantidade" id="quantidade" placeholder="Quantidade" required step="1" min="1" />
 				</div>
 				<div class="form-group" v-if="item">
 					<label for="preco">Preço</label>
@@ -52,6 +58,7 @@
 
 	const dataForm = reactive({
 		nome: '',
+		quantidade: 1,
 		preco: 0,
 	});
 
@@ -79,6 +86,7 @@
 
 	function setEditar() {
 		dataForm.nome = item.value.nome;
+		dataForm.quantidade = item.value.quantidade;
 		dataForm.preco = item.value.preco;
 		store.commit('setEditar', true);
 	}
@@ -92,6 +100,7 @@
 		if (item.value.resolvido == 1) setEditar();
 		else {
 			dataForm.nome = item.value.nome;
+			dataForm.quantidade = 0;
 			dataForm.preco = 0;
 			salvar();
 		}

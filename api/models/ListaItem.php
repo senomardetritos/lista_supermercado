@@ -7,14 +7,14 @@ class ListaItem
     public function selectById($usuarios_id, $id)
     {
         $db = new DB();
-        $query = 'select id, nome, preco, resolvido, created_at from lista_itens where usuarios_id = ' . DB::data($usuarios_id) . ' and id = ' . DB::data($id);
+        $query = 'select id, nome, quantidade, preco, resolvido, created_at from lista_itens where usuarios_id = ' . DB::data($usuarios_id) . ' and id = ' . DB::data($id);
         return $db->query($query);
     }
 
     public function selectAll($usuarios_id, $listas_id)
     {
         $db = new DB();
-        $query = 'select id, nome, preco, resolvido, created_at from lista_itens where usuarios_id = ' . DB::data($usuarios_id) . ' and listas_id = ' . DB::data($listas_id);
+        $query = 'select id, nome, quantidade, preco, resolvido, created_at from lista_itens where usuarios_id = ' . DB::data($usuarios_id) . ' and listas_id = ' . DB::data($listas_id);
         return $db->query($query);
     }
 
@@ -25,10 +25,10 @@ class ListaItem
         return $db->execute($query);
     }
 
-    public function atualizar($usuarios_id, $id, $nome, $preco)
+    public function atualizar($usuarios_id, $id, $nome, $preco, $quantidade)
     {
         $db = new DB();
-        $query = 'update lista_itens set nome = ' . DB::data($nome) . ', preco = ' . DB::value($preco) . ' where usuarios_id = ' . DB::data($usuarios_id) . ' and id = ' . DB::value($id);
+        $query = 'update lista_itens set nome = ' . DB::data($nome) . ', preco = ' . DB::value($preco) . ', quantidade = ' . DB::value($quantidade) . ' where usuarios_id = ' . DB::data($usuarios_id) . ' and id = ' . DB::value($id);
         return $db->execute($query);
     }
 

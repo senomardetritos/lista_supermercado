@@ -15,10 +15,13 @@
 				<ul v-if="lista.itens && lista.itens.length > 0">
 					<li v-for="(item, i) in lista.itens" :key="i" @click="editar(item.id)">
 						<a href="#" :class="item.resolvido == 1 ? 'resolvido' : ''">
-							<span v-if="item.nome">{{ item.nome }}</span>
+							<span v-if="item.nome">
+								{{ item.quantidade > 0 ? item.quantidade : '' }}
+								{{ item.nome }}
+							</span>
 							<span v-else>Sem nome</span>
 						</a>
-						<span v-if="item.preco">R$ {{ item.preco }}</span>
+						<span v-if="item.preco">R$ {{ parseInt(item.quantidade) * parseFloat(item.preco) }}</span>
 						<span v-else>R$ 0.00</span>
 					</li>
 				</ul>
