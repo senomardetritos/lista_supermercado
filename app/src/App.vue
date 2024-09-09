@@ -2,7 +2,7 @@
 	<div>
 		<HeaderSite v-if="store.state.logado" />
 		<MenuSide v-if="store.state.logado" />
-		<router-view />
+		<router-view></router-view>
 		<LoadingModal v-if="store.state.loading" />
 		<AlertModal v-if="store.state.alert" />
 		<ConfirmModal v-if="store.state.confirm" />

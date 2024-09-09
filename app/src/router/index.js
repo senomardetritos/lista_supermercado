@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router';
+import { createRouter, createWebHashHistory } from 'vue-router';
 import LoginView from '../views/LoginView.vue';
 import RecuperarSenha from '../views/RecuperarSenha.vue';
 import CadastrarUsuario from '../views/CadastrarUsuario.vue';
@@ -8,6 +8,7 @@ import FormListaItem from '../views/FormListaItem.vue';
 
 const routes = [
 	{ path: '/', name: 'login', component: LoginView },
+	{ path: '/login', name: 'loginpage', component: LoginView },
 	{ path: '/recuperar', name: 'recuperar', component: RecuperarSenha },
 	{ path: '/cadastrar', name: 'cadastrar', component: CadastrarUsuario },
 	{ path: '/minhas-listas', name: 'minhaslistas', component: MinhasListas, meta: { auth: true } },
@@ -17,7 +18,8 @@ const routes = [
 ];
 
 const router = createRouter({
-	history: createWebHistory(process.env.BASE_URL),
+	mode: 'history',
+	history: createWebHashHistory(),
 	routes,
 });
 
