@@ -51,12 +51,19 @@ class listas
         $dados_lista = $lista->selectById($usuarios_id, $listas_id);
         $lista_item = new ListaItem();
         $dados_lista_itens = $lista_item->selectAll($usuarios_id, $listas_id);
-        $to      = $dados_usuario['email'];
-        $subject = 'Lista de compras';
-        $email_lista = new EmailListaCompras();
-        $message = $email_lista->getTexto($dados_usuario, $dados_lista, $dados_lista_itens);
-        $mail = new Mail();
-        $mail->send($to, $subject, $message);
-        return ['data' => 'Email enviado'];
+        if ($dados_lista_itens && sizeof($dados_lista_itens) > 0) {
+            if (!isset($dados_lista_itens[0])) {
+                $dados_lista_itens = [$dados_lista_itens];
+            }
+            $to = $dados_usuario['email'];
+            $subject = 'Lista de compras';
+            $email_lista = new EmailListaCompras();
+            $message = $email_lista->getTexto($dados_usuario, $dados_lista, $dados_lista_itens);
+            $mail = new Mail();
+            $mail->send($to, $subject, $message);
+            return ['data' => 'Email enviado'];
+        } else {
+            return ['error' => 'Lista sem itens'];
+        }
     }
 }
